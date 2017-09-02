@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Created by nephrite on 02.09.17.
  */
