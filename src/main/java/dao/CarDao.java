@@ -14,5 +14,5 @@ import java.util.List;
 public interface CarDao {
     void save(Car car, String fileName) throws JsonProcessingException;
     void delete(int id, String fileName);
-    List<Car>  findall(String fileName);
+    List<Car>  findAll(String fileName);
 }

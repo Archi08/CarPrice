@@ -77,7 +77,7 @@ public class CarDaoFileBasedImpl  implements  CarDao{
 
     }
 
-    public List<Car> findall(String fileName) {
+    public List<Car> findAll(String fileName) {
         try {
 
             ArrayList<Car> cars = new ArrayList<>();
@@ -90,7 +90,6 @@ public class CarDaoFileBasedImpl  implements  CarDao{
             while (currentModel != null) {
 
                 Car car = o.readValue(currentModel, Car.class);
-
 
                 cars.add(car);
 
