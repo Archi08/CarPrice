@@ -1,5 +1,6 @@
 package dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import models.Car;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @version v1.0
  */
 public interface CarDao {
-    void save(Car car, String fileName);
-    void delete(int id);
-    List<Car> findall();
+    void save(Car car, String fileName) throws JsonProcessingException;
+    void delete(int id, String fileName);
+    List<Car>  findall(String fileName);
 }

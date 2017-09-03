@@ -1,7 +1,11 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import dao.CarDaoFileBasedImpl;
+import generators.SimpleIdGenerator;
 import models.Car;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nephrite on 02.09.17.
@@ -12,29 +16,19 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int item = Integer.parseInt(bufferedReader.readLine());//считали пункт меню*/
 
-        Car car = new Car("asd", 123);
-        Car car1 = new Car("asd", 123);
-        Car car2 = new Car("asd", 123);
-
-        ArrayList<Car> cars = new ArrayList<Car>();
-        cars.add(car);
-        cars.add(car1);
-        cars.add(car);
+        Car car = new Car("asd", 1123, "adsa");
 
 
+        SimpleIdGenerator simpleIdGenerator = new SimpleIdGenerator("id.txt");
+        CarDaoFileBasedImpl carDaoFileBased = new CarDaoFileBasedImpl("Cars.txt", simpleIdGenerator);
 
-        save("Cars", car);
+        carDaoFileBased.save(car, "Cars.txt");
+        List<Car> cars = new ArrayList<>();
 
-    }
-    public static void save(String fileName, Car car) {
-        String string = car.toString();
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(string);
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            System.err.println("IO Exception");;
-        }
+       carDaoFileBased.delete(2, "Cars.txt");
+
+
+
+
     }
 }

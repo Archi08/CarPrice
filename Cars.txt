@@ -1,0 +1,2 @@
+{"name":"asd","price":123,"manager":"adsa","id":3}
+{"name":"asd","price":1123,"manager":"adsa","id":4}
