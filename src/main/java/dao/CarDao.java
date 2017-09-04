@@ -15,4 +15,5 @@ public interface CarDao {
     void save(Car car, String fileName) throws JsonProcessingException;
     void delete(int id, String fileName);
     List<Car>  findAll(String fileName);
+    Car findById(int id, String fileName);
 }

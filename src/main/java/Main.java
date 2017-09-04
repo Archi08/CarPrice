@@ -2,6 +2,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.CarDaoFileBasedImpl;
 import generators.SimpleIdGenerator;
 import models.Car;
+import service.CarServiceImpl;
+import service.Display;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,20 +14,15 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-       /* System.out.println("Введите пункт от 1 до 4: ");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int item = Integer.parseInt(bufferedReader.readLine());//считали пункт меню*/
-
-        Car car = new Car("asd", 1123, "adsa");
 
 
-        SimpleIdGenerator simpleIdGenerator = new SimpleIdGenerator("id.txt");
-        CarDaoFileBasedImpl carDaoFileBased = new CarDaoFileBasedImpl("Cars.txt", simpleIdGenerator);
-
-        carDaoFileBased.save(car, "Cars.txt");
-        List<Car> cars = new ArrayList<>();
-
-       carDaoFileBased.delete(2, "Cars.txt");
+        Car car = new Car();
+        List<Car> list = new ArrayList<>();
+        SimpleIdGenerator simpleIdGenerator = new SimpleIdGenerator("id");
+        CarDaoFileBasedImpl carDaoFileBased = new CarDaoFileBasedImpl("Cars", simpleIdGenerator);
+        CarServiceImpl carService = new CarServiceImpl(carDaoFileBased);
+        Display display = new Display(carService, list, car);
+        display.start();
 
 
 

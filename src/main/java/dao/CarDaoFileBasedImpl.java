@@ -43,17 +43,40 @@ public class CarDaoFileBasedImpl  implements  CarDao{
 
     }
 
+    @Override
+    public Car findById(int id, String fileName) {
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String current = reader.readLine();
+            ObjectMapper o = new ObjectMapper();
+
+            while (current != null) {
+                Car car = o.readValue(current, Car.class);
+                int curId =  car.getId();
+                if (curId == id) {
+                    return car;
+                }
+                current = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not Found Exception!!");
+        } catch (IOException e) {
+            System.err.println("IO Exception =(");
+        }
+        return new Car();
+    }
+
     public void delete(int id, String fileName) {
         try {
             List<String> models = new ArrayList<>();
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String current = reader.readLine();
             ObjectMapper o = new ObjectMapper();
-            Car car = o.readValue(current, Car.class);
-
             int finded = 0; // счетчик, что бы больше одного не удалить
             while (current != null) {
-                 int curId =  car.getId();
+                Car car = o.readValue(current, Car.class);
+                int curId =  car.getId();
                 if (curId == id && finded == 0) {
                     finded++;
                 } else {
@@ -73,26 +96,18 @@ public class CarDaoFileBasedImpl  implements  CarDao{
         } catch (IOException e) {
             System.err.println("IO Exception =(");
         }
-
-
     }
 
     public List<Car> findAll(String fileName) {
         try {
-
             ArrayList<Car> cars = new ArrayList<>();
             ObjectMapper o = new ObjectMapper();
-
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-
             String currentModel = reader.readLine();
 
             while (currentModel != null) {
-
                 Car car = o.readValue(currentModel, Car.class);
-
                 cars.add(car);
-
                 currentModel = reader.readLine();
             }
             reader.close();

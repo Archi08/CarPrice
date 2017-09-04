@@ -11,9 +11,7 @@ import java.io.*;
 public class SimpleIdGenerator implements GeneratorId{
 
     private String idFileName;
-
     private int lastGeneratedId;
-
 
     public SimpleIdGenerator(String idFileName) {
         this.idFileName = idFileName;
@@ -44,9 +42,4 @@ public class SimpleIdGenerator implements GeneratorId{
         }
         return -1;
     }
-
-
-
-
-
 }
