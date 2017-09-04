@@ -26,35 +26,38 @@ public class Display {
     }
 
     public void start() throws IOException {
-        System.out.println("============================");
-        System.out.println("|           MENU           |");
-        System.out.println("============================");
-        System.out.println("| Options:                 |");
-        System.out.println("| 1- Добавить транспорт    |");
-        System.out.println("|      2- В наличии        |");
-        System.out.println("|        3- Покупка        |");
-        System.out.println("|      4- Статистика       |");
-        System.out.println("|       0 - Выход          |");
-        System.out.println("============================");
+        label:
+        while (true) {
+            System.out.println("============================");
+            System.out.println("|           MENU           |");
+            System.out.println("============================");
+            System.out.println("| Options:                 |");
+            System.out.println("| 1- Добавить транспорт    |");
+            System.out.println("|      2- В наличии        |");
+            System.out.println("|        3- Покупка        |");
+            System.out.println("|      4- Статистика       |");
+            System.out.println("|       0 - Выход          |");
+            System.out.println("============================");
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int item = Integer.parseInt(bufferedReader.readLine());//считали пункт меню
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            int item = Integer.parseInt(bufferedReader.readLine());//считали пункт меню
 
-         switch (item) {
-             case 0:
-                 break;
-             case 1:
-                 carService.createCar();
-                 break;
-             case 2:
-                 carService.outPutCars(list);
-                 break;
-             case 3:
-                 carService.sale(car, "Cars");
-                 break;
-             case 4:
-                 carService.showStat(list);
-                 break;
-         }
+            switch (item) {
+                case 0:
+                    break label;
+                case 1:
+                    carService.createCar();
+                    break;
+                case 2:
+                    carService.outPutCars(list);
+                    break;
+                case 3:
+                    carService.sale(car, "Cars");
+                    break;
+                case 4:
+                    carService.showStat(list);
+                    break;
+            }
+        }
     }
 }
